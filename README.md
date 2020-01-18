@@ -66,3 +66,6 @@ Exemplo de execusão:
 <p align="center">
  <img src = https://github.com/ArthurOlive/maquina_turing_configuravel_c/blob/master/img/ex1.PNG/>
 </p>
+
+OBS: Execusão em prompt:
+> gcc turing.c mtll1.c -o mtll1 
