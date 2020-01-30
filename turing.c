@@ -45,7 +45,7 @@ estado * Estado(transicao * transicoes, int tam, char * id){
 	return est;
 }
 
-turing * Turing(char * alfabeto, char * alfabetoFita, estado * estados, int quant, char caractereInicial, char caractereFinal, estado * estadoInicial, estado * estadoFinal){
+turing * Turing(char * alfabeto, char * alfabetoFita, int quantSimbolosAux, estado * estados, int quant, char caractereInicial, char caractereFinal, estado * estadoInicial, estado * estadoFinal){
 	turing * ntr = calloc (1, sizeof(turing));
 	
 	ntr->alfabeto = alfabeto;
@@ -56,6 +56,7 @@ turing * Turing(char * alfabeto, char * alfabetoFita, estado * estados, int quan
 	ntr->estadoFinal = estadoFinal;
 	ntr->quantEstados = quant;
 	ntr->estados = estados;
+	ntr->quantSimbolosAux = quantSimbolosAux;
 	ntr->estadoAtual = ntr->estadoInicial;
 	ntr->fita = NULL;
 	
@@ -140,16 +141,16 @@ void aceita(turing * tr, char * cadeia){
 	}
 	
 	int resp = 0;
-    printf("==================================================================\n");
+    printf("\n====================================================\n");
 	while(tr->estadoAtual->idEstado != tr->estadoFinal->idEstado && resp == 0){
         printf("\t");
 		printFita(tr->fita);
 		resp = processar(tr);
 	}
-	printf("==================================================================\n");
+	printf("\n====================================================\n");
 	printf(" Estado final : %s\n", tr->estadoAtual->idEstado);
 	
-	if (testarFita(tr->fita, tr->caractereInicial, tr->caractereFinal, tr->alfabetoFita) != 0){
+	if (testarFita(tr->fita, tr->caractereInicial, tr->caractereFinal, tr->alfabetoFita, tr->quantSimbolosAux) != 0){
 		printf(" Rejeita a cadeia %s\n", tr->fita->cadeia);
 	} else if (tr->estadoAtual->idEstado != tr->estadoFinal->idEstado){
 		printf(" Rejeita a cadeia %s\n", tr->fita->cadeia);
@@ -197,7 +198,7 @@ int processar(turing * tr){
 
 
 
-int testarFita(fita * ft, char inicial, char  final, char * alfaFita){
+int testarFita(fita * ft, char inicial, char  final, char * alfaFita, int quantSimbolosAux){
 	if (ft != NULL){
 		int cont = 0;
 		int i = 0;
@@ -206,7 +207,7 @@ int testarFita(fita * ft, char inicial, char  final, char * alfaFita){
 			c = 0;
 			if (ft->fita[cont].conteudo != inicial && ft->fita[cont].conteudo != final){
 				i = 0;
-				while(i < strlen(alfaFita)){
+				while(i < quantSimbolosAux){
 					if (ft->fita[cont].conteudo == alfaFita[i]){
 						c = 1;
 						i = strlen(alfaFita);
@@ -216,6 +217,7 @@ int testarFita(fita * ft, char inicial, char  final, char * alfaFita){
 				if (c == 0){
 					return 1;
 				}
+
 			}
 			cont++;
 		}

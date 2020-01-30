@@ -29,15 +29,16 @@ typedef struct transicao{
 } transicao;
 
 typedef struct estado{
-	int quant;					//quantidade de estados
+	int quant;					//quantidade de transições
 	char * idEstado;			//contem o nome do estado para a indentificacao
-	transicao * transicaoEstado;//contem um conjunto de estados
+	transicao * transicaoEstado;//contem um conjunto de transições
 } estado;
 
 typedef struct turing{
 	char * alfabeto;			//alfabeto da cadeia
 	char * alfabetoFita;		//alfabeto da fita
 	int quantEstados; 			//quantidade de estados
+	int quantSimbolosAux;		//quantidade de simbolos aux
 	char caractereInicial;		//caractere do inicio da fita
 	char caractereFinal;		//caractere do final da fita
 	estado * estados;			//contem todos os estados 
@@ -47,7 +48,7 @@ typedef struct turing{
 	estado * estadoFinal;		//ponteiro para o estado final da maquina 
 } turing;
 
-turing * Turing(char * alfabeto, char * alfabetoFita, estado * estados, int quant, char caractereInicial, char caractereFinal, estado * estadoInicial, estado * estadoFinal);
+turing * Turing(char * alfabeto, char * alfabetoFita, int quantSimbolosAux, estado * estados, int quant, char caractereInicial, char caractereFinal, estado * estadoInicial, estado * estadoFinal);
 estado * Estado(transicao * transicoes, int tam, char * id);
 transicao * ts(char lido, char escrito, char * estado, int movimento); 
 fita * iniciarFita(char * cadeia, char inicial, char final);
@@ -60,6 +61,6 @@ void moverPosFita(fita * ft, int movimento);
 void aceita(turing * tr, char * cadeia);
 int processar(turing * tr);
 estado * buscarEstado(turing * tr, char * id);
-int testarFita(fita * ft, char inicial, char final, char * alfaFita);
+int testarFita(fita * ft, char inicial, char final, char * alfaFita, int quantSimbolosAux);
 
 #endif

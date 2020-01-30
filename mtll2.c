@@ -36,7 +36,7 @@ int main(){
 	estado estados[] = {*q1, *q2, *q3, *q4, *q5, *q6, *q7, *q8, *qf};
 	
 	//definicao da maquina
-	turing * tr = Turing(alfabeto, alfabetoFita, estados, 9, '<', '>', q1, qf);
+	turing * tr = Turing(alfabeto, alfabetoFita, 4, estados, 9, '<', '>', q1, qf);
 
 	//loop do programa
 	int opc;

@@ -7,7 +7,7 @@ int main(){
 	char alfabeto[] = {'a', 'b', 'c'};
 
 	//alfabeto da fita
-	char alfabetoFita[] = {'X', 'Y', 'Z'};
+	char simbolosAux[] = {'X', 'Y', 'Z'};
 	
 	//tabela de transições
 	transicao tq1 [] = {*ts('<','<',"q2", DIR)};
@@ -29,7 +29,7 @@ int main(){
 	estado estados[] = {*q1, *q2, *q3, *q4, *q5, *qf};
 	
 	//definicao da maquina
-	turing * tr = Turing(alfabeto, alfabetoFita, estados, 6, '<', '>', q1, qf);
+	turing * tr = Turing(alfabeto, simbolosAux, 3, estados, 6, '<', '>', q1, qf);
 
 	//loop do programa
 	int opc; 
