@@ -1,6 +1,7 @@
-# Maquina de turing linearmente limitada:
+﻿# Maquina de turing linearmente limitada:
 
 O projeto a seguir contem 2 exemplo mtll1.c e mtll2.c, os arquivos da biblioteca são os arquivos turing.h e turing.c, abaixo segue um exemplo de chamada dos metodos e configuração:
+
 
 ~~~~c
 #include <stdlib.h>
